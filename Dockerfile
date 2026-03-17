@@ -1,14 +1,16 @@
+# -------- BUILD STAGE --------
 FROM maven:3.9.6-eclipse-temurin-17 AS builder
 
 WORKDIR /build
 
 COPY pom.xml .
-COPY src src
+RUN mvn -B -q -e -DskipTests dependency:go-offline
 
-RUN apt-get update && apt-get install -y maven && \
-    mvn clean package -DskipTests
+COPY src ./src
+RUN mvn clean package -DskipTests
 
-FROM openjdk:17-jdk-slim
+# -------- RUN STAGE --------
+FROM eclipse-temurin:17-jdk
 
 WORKDIR /app
 
