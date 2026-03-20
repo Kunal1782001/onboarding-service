@@ -8,7 +8,7 @@
     <groupId>flowable</groupId>
     <artifactId>onboarding-service</artifactId>
     <version>1.0.4</version>
-    vh
+    
       <!-- nexus repo -->
         
 		   <distributionManagement>
